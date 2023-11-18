@@ -1,9 +1,0 @@
-com/github/kiiril/telegrambot/command/StartCommandTest.class
-com/github/kiiril/telegrambot/command/CommandContainerTest.class
-com/github/kiiril/telegrambot/command/NoCommandTest.class
-com/github/kiiril/telegrambot/command/UnknownCommandTest.class
-com/github/kiiril/telegrambot/command/AbstractCommandTest.class
-com/github/kiiril/telegrambot/TelegramBotApplicationTests.class
-com/github/kiiril/telegrambot/command/HelpCommandTest.class
-com/github/kiiril/telegrambot/command/StopCommandTest.class
-com/github/kiiril/telegrambot/service/SendBotMessageServiceTest.class
