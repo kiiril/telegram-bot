@@ -1,1 +1,9 @@
 /Users/kirillbuloychik/IdeaProjects/telegram-bot/src/test/java/com/github/kiiril/telegrambot/TelegramBotApplicationTests.java
+/Users/kirillbuloychik/IdeaProjects/telegram-bot/src/test/java/com/github/kiiril/telegrambot/command/StartCommandTest.java
+/Users/kirillbuloychik/IdeaProjects/telegram-bot/src/test/java/com/github/kiiril/telegrambot/command/NoCommandTest.java
+/Users/kirillbuloychik/IdeaProjects/telegram-bot/src/test/java/com/github/kiiril/telegrambot/command/UnknownCommandTest.java
+/Users/kirillbuloychik/IdeaProjects/telegram-bot/src/test/java/com/github/kiiril/telegrambot/service/SendBotMessageServiceTest.java
+/Users/kirillbuloychik/IdeaProjects/telegram-bot/src/test/java/com/github/kiiril/telegrambot/command/HelpCommandTest.java
+/Users/kirillbuloychik/IdeaProjects/telegram-bot/src/test/java/com/github/kiiril/telegrambot/command/CommandContainerTest.java
+/Users/kirillbuloychik/IdeaProjects/telegram-bot/src/test/java/com/github/kiiril/telegrambot/command/AbstractCommandTest.java
+/Users/kirillbuloychik/IdeaProjects/telegram-bot/src/test/java/com/github/kiiril/telegrambot/command/StopCommandTest.java
