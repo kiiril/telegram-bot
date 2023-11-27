@@ -1,5 +1,9 @@
 # Release Notes
 
+## 0.4.0-SNAPSHOT
+
+* TB-1: added repository level
+
 ## 0.3.0-SNAPSHOT
 
 * TB-13: added deployment process to the project
