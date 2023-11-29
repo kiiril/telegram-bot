@@ -22,7 +22,7 @@ jobs:
     - name: Set up MySQL
       uses: mirromutth/mysql-action@v1.1
       with:
-        mysql version: '8.2.0'
+        mysql version: '8.0.0'
         mysql database: 'tb-mysql-db-test'
         mysql root password: 'root'
         mysql user: 'tb_mysql_db_test_user'

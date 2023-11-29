@@ -1,4 +1,4 @@
-FROM adoptopenjdk/openjdk11:ubi
+FROM adoptopenjdk/openjdk17:ubi
 ARG JAR_FILE=target/*.jar
 ENV BOT_NAME=javarush_telegram_kiryl_bot
 ENV BOT_TOKEN=6811604095:AAFupp0CpIm7XxdDNV5yiNWLfnce8p0zKPY

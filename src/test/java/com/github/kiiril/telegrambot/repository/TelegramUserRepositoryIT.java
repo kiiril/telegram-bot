@@ -20,7 +20,6 @@ import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTest
 public class TelegramUserRepositoryIT {
     @Autowired
     private TelegramUserRepository telegramUserRepository;
-
     @Sql(scripts = {"/sql/clearDbs.sql", "/sql/telegram_users.sql"})
     @Test
     public void shouldProperlyFindAllActiveUsers() {
@@ -34,11 +33,10 @@ public class TelegramUserRepositoryIT {
     @Sql(scripts = {"/sql/clearDbs.sql"})
     @Test
     public void shouldProperlySaveTelegramUser() {
-
         // given
         TelegramUser telegramUser = new TelegramUser();
         telegramUser.setChatId("1234567890");
-        telegramUser.setActive(true);
+        telegramUser.setActive(false);
         telegramUserRepository.save(telegramUser);
 
         // when
