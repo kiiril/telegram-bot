@@ -13,14 +13,12 @@ services:
       BOT_DB_PASSWORD: ${BOT_DB_PASSWORD}
     restart: always
   db:
-    image: mysql:8.2.0
+    image: mysql:8.0
     restart: always
     environment:
       MYSQL_USER: ${BOT_DB_USERNAME}
       MYSQL_PASSWORD: ${BOT_DB_PASSWORD}
-      MYSQL_DATABASE: 'tb-mysql-db'
+      MYSQL_DATABASE: 'jrtb_db'
       MYSQL_ROOT_PASSWORD: 'root'
     ports:
       - '3306:3306'
-    expose:
-      - '3306'

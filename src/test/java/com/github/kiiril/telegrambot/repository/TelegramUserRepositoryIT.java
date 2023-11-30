@@ -20,7 +20,7 @@ import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTest
 public class TelegramUserRepositoryIT {
     @Autowired
     private TelegramUserRepository telegramUserRepository;
-    @Sql(scripts = {"/sql/clearDbs.sql", "/sql/telegram_users.sql"})
+    @Sql(scripts = {"classpath:/sql/clearDbs.sql", "classpath:/sql/telegram_users.sql"})
     @Test
     public void shouldProperlyFindAllActiveUsers() {
         // when
@@ -30,7 +30,7 @@ public class TelegramUserRepositoryIT {
         Assertions.assertEquals(5, users.size());
     }
 
-    @Sql(scripts = {"/sql/clearDbs.sql"})
+    @Sql(scripts = {"classpath:/sql/clearDbs.sql"})
     @Test
     public void shouldProperlySaveTelegramUser() {
         // given
