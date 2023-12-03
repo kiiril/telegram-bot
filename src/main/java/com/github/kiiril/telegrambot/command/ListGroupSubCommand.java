@@ -9,9 +9,6 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import javax.ws.rs.NotFoundException;
 import java.util.stream.Collectors;
 
-/**
- * {@link Command} for getting list of {@link GroupSub}.
- */
 public class ListGroupSubCommand implements Command {
     private SendBotMessageService sendBotMessageService;
     private TelegramUserService telegramUserService;
@@ -26,11 +23,17 @@ public class ListGroupSubCommand implements Command {
         // TODO add exception handling
         TelegramUser user = telegramUserService.findByChatId(CommandUtils.getChatId(update).toString()).orElseThrow(NotFoundException::new);
 
-        String message = "Я нашел все подписки на группы: \n\n";
-        String collectedGroups = user.getGroupSubs().stream()
-                .map(it -> "Группа: " + it.getTitle() + " , ID = " + it.getId() + " \n")
-                .collect(Collectors.joining());
+        String message;
 
-        sendBotMessageService.sendMessage(user.getChatId(), message + collectedGroups);
+        if (user.getGroupSubs().isEmpty()) {
+            message = "Пока нет подписок на группы. Чтобы добавить подписку напиши /addGroupSub";
+        } else {
+            String collectedGroups = user.getGroupSubs().stream()
+                    .map(it -> "Группа: " + it.getTitle() + " , ID = " + it.getId() + " \n")
+                    .collect(Collectors.joining());
+            message = String.format("Я нашел все подписки на группы: \n\n %s", collectedGroups);
+        }
+
+        sendBotMessageService.sendMessage(user.getChatId(), message);
     }
 }
