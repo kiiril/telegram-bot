@@ -18,6 +18,8 @@
 		<telegrambot.starter.version>5.0.1</telegrambot.starter.version>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
+		<unirest.version>3.11.01</unirest.version>
+		<apache.commons.version>3.11</apache.commons.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -70,6 +72,18 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.konghq</groupId>
+			<artifactId>unirest-java</artifactId>
+			<version>${unirest.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${apache.commons.version}</version>
 		</dependency>
 	</dependencies>
 
