@@ -5,7 +5,6 @@ import com.github.kiiril.telegrambot.service.SendBotMessageService;
 import com.github.kiiril.telegrambot.service.SendBotMessageServiceImpl;
 import com.github.kiiril.telegrambot.service.TelegramUserService;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
@@ -44,8 +43,15 @@ abstract class AbstractCommandTest {
 
         // then
         Mockito.verify(telegramBot).execute(sendMessage);
+    }
 
-
+    public static Update prepareUpdate(Long chatId, String commandName) {
+        Update update = new Update();
+        Message message = Mockito.mock(Message.class);
+        Mockito.when(message.getChatId()).thenReturn(chatId);
+        Mockito.when(message.getText()).thenReturn(commandName);
+        update.setMessage(message);
+        return update;
     }
 
 }
