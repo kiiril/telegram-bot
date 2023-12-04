@@ -6,7 +6,11 @@ import kong.unirest.Unirest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
+
+import static org.springframework.util.StringUtils.isEmpty;
 
 /**
  * Implementation of the {@link JavaRushGroupClient} interface.
@@ -15,9 +19,11 @@ import java.util.List;
 public class JavaRushGroupClientImpl implements JavaRushGroupClient {
 
     private final String javarushApiGroupPath;
+    private final String javarushApiPostPath;
 
     public JavaRushGroupClientImpl(@Value("${javarush.api.path}") String javarushApi) {
         this.javarushApiGroupPath = javarushApi + "/groups";
+        this.javarushApiPostPath = javarushApi + "/posts";
     }
 
     @Override
@@ -51,5 +57,16 @@ public class JavaRushGroupClientImpl implements JavaRushGroupClient {
         return Unirest.get(String.format("%s/group%s", javarushApiGroupPath, id))
                 .asObject(GroupDiscussionInfo.class)
                 .getBody();
+    }
+
+    @Override
+    public Integer findLastPostId(Integer groupSubId) {
+        List<PostInfo> posts = Unirest.get(javarushApiPostPath)
+                .queryString("order", "NEW")
+                .queryString("groupKid", groupSubId.toString())
+                .queryString("limit", "1")
+                .asObject(new GenericType<List<PostInfo>>(){
+                }).getBody();
+        return isEmpty(posts) ? 0 : Optional.ofNullable(posts.get(0)).map(PostInfo::getId).orElse(0);
     }
 }
