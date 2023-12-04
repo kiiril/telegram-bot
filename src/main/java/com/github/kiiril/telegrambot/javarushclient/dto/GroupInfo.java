@@ -2,6 +2,7 @@ package com.github.kiiril.telegrambot.javarushclient.dto;
 
 import lombok.Data;
 import lombok.ToString;
+import org.apache.commons.codec.language.bm.Lang;
 
 @Data
 @ToString
@@ -11,6 +12,7 @@ public class GroupInfo {
     private String createTime;
     private String description;
     private String key;
+    private Language language;
     private Integer levelToEditor;
     private MeGroupInfo meGroupInfo;
     private String pictureUrl;

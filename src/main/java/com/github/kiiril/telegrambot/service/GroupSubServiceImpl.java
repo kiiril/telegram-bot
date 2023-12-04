@@ -1,5 +1,6 @@
 package com.github.kiiril.telegrambot.service;
 
+import com.github.kiiril.telegrambot.javarushclient.JavaRushGroupClient;
 import com.github.kiiril.telegrambot.javarushclient.dto.GroupDiscussionInfo;
 import com.github.kiiril.telegrambot.repository.GroupSubRepository;
 import com.github.kiiril.telegrambot.repository.entity.GroupSub;
@@ -16,11 +17,13 @@ public class GroupSubServiceImpl implements GroupSubService {
 
     private final GroupSubRepository groupSubRepository;
     private final TelegramUserService telegramUserService;
+    private final JavaRushGroupClient javaRushGroupClient;
 
     @Autowired
-    public GroupSubServiceImpl(GroupSubRepository groupSubRepository, TelegramUserService telegramUserService) {
+    public GroupSubServiceImpl(GroupSubRepository groupSubRepository, TelegramUserService telegramUserService, JavaRushGroupClient javaRushGroupClient) {
         this.groupSubRepository = groupSubRepository;
         this.telegramUserService = telegramUserService;
+        this.javaRushGroupClient = javaRushGroupClient;
     }
 
     @Override
@@ -40,6 +43,7 @@ public class GroupSubServiceImpl implements GroupSubService {
         } else {
             groupSub = new GroupSub();
             groupSub.addUser(user);
+            groupSub.setLastArticleId(javaRushGroupClient.findLastPostId(groupDiscussionInfo.getId()));
             groupSub.setId(groupDiscussionInfo.getId());
             groupSub.setTitle(groupDiscussionInfo.getTitle());
         }
