@@ -8,7 +8,6 @@ import com.github.kiiril.telegrambot.repository.entity.TelegramUser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import java.util.Optional;
@@ -22,7 +21,7 @@ public class GroupSubServiceTest {
     private JavaRushGroupClient javaRushGroupClient;
     private TelegramUser newUser;
 
-    private static final String CHAT_ID = "1";
+    private static final Long CHAT_ID = 1L;
 
     @BeforeEach
     public void init() {
@@ -49,7 +48,7 @@ public class GroupSubServiceTest {
         GroupSub expectedGroupSub = new GroupSub();
         expectedGroupSub.setId(groupDiscussionInfo.getId());
         expectedGroupSub.setTitle(groupDiscussionInfo.getTitle());
-        expectedGroupSub.setLastArticleId(310);
+        expectedGroupSub.setLastPostId(310);
         expectedGroupSub.addUser(newUser);
 
         // when
@@ -63,7 +62,7 @@ public class GroupSubServiceTest {
     public void shouldProperlyAddUserToExistingGroup() {
         //given
         TelegramUser oldTelegramUser = new TelegramUser();
-        oldTelegramUser.setChatId("2");
+        oldTelegramUser.setChatId(2L);
         oldTelegramUser.setActive(true);
 
         GroupDiscussionInfo groupDiscussionInfo = new GroupDiscussionInfo();

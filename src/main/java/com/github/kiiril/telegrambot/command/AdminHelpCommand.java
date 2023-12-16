@@ -20,6 +20,6 @@ public class AdminHelpCommand implements Command {
 
     @Override
     public void execute(Update update) {
-        sendBotMessageService.sendMessage(CommandUtils.getChatId(update).toString(), ADMIN_HELP_MESSAGE);
+        sendBotMessageService.sendMessage(CommandUtils.getChatId(update), ADMIN_HELP_MESSAGE);
     }
 }

@@ -25,7 +25,7 @@ public class ListGroupSubCommandTest {
         // given
         TelegramUser user = new TelegramUser();
         user.setActive(true);
-        user.setChatId("1");
+        user.setChatId(1L);
 
         List<GroupSub> groupSubList = new ArrayList<>();
         groupSubList.add(populateGroupSub(1, "gs1"));
@@ -44,7 +44,7 @@ public class ListGroupSubCommandTest {
 
         Update update = new Update();
         Message message = Mockito.mock(Message.class);
-        Mockito.when(message.getChatId()).thenReturn(Long.valueOf(user.getChatId()));
+        Mockito.when(message.getChatId()).thenReturn(user.getChatId());
         Mockito.when(message.getText()).thenReturn(LIST_GROUP_SUB.getCommandName());
         update.setMessage(message);
 

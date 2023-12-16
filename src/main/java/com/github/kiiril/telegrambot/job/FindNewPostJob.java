@@ -1,6 +1,6 @@
 package com.github.kiiril.telegrambot.job;
 
-import com.github.kiiril.telegrambot.service.FindNewArticleService;
+import com.github.kiiril.telegrambot.service.FindNewPostService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -14,21 +14,21 @@ import java.time.ZoneOffset;
  */
 @Slf4j
 @Component
-public class FindNewArticleJob {
-    private final FindNewArticleService findNewArticleService;
+public class FindNewPostJob {
+    private final FindNewPostService findNewPostService;
 
     @Autowired
-    public FindNewArticleJob(FindNewArticleService findNewArticleService) {
-        this.findNewArticleService = findNewArticleService;
+    public FindNewPostJob(FindNewPostService findNewPostService) {
+        this.findNewPostService = findNewPostService;
     }
 
-    @Scheduled(fixedRateString = "${bot.recountNewArticleFixedRate}")
-    public void findNewArticles() {
+    @Scheduled(fixedRateString = "${bot.recountNewPostFixedRate}")
+    public void findNewPosts() {
         LocalDateTime start = LocalDateTime.now();
 
         log.info("Find new article job started.");
 
-        findNewArticleService.findNewArticles();
+        findNewPostService.findNewPosts();
 
         LocalDateTime end = LocalDateTime.now();
 
