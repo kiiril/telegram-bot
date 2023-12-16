@@ -35,7 +35,7 @@ public class StatCommand implements Command {
                 .map(it -> String.format("%s (id = %s) - %s подписчиков", it.getTitle(), it.getId(), it.getActiveUserCount()))
                 .collect(Collectors.joining("\n"));
 
-        sendBotMessageService.sendMessage(update.getMessage().getChatId().toString(), String.format(
+        sendBotMessageService.sendMessage(CommandUtils.getChatId(update), String.format(
                 STAT_MESSAGE,
                 statisticDTO.getActiveUserCount(),
                 statisticDTO.getInActiveUserCount(),
