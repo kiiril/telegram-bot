@@ -4,12 +4,15 @@ import com.github.kiiril.telegrambot.command.CommandContainer;
 import com.github.kiiril.telegrambot.javarushclient.JavaRushGroupClient;
 import com.github.kiiril.telegrambot.service.GroupSubService;
 import com.github.kiiril.telegrambot.service.SendBotMessageServiceImpl;
+import com.github.kiiril.telegrambot.service.StatisticsService;
 import com.github.kiiril.telegrambot.service.TelegramUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
+
+import java.util.List;
 
 import static com.github.kiiril.telegrambot.command.CommandName.NO;
 
@@ -27,8 +30,12 @@ public class JavarushTelegramBot extends TelegramLongPollingBot {
     private final CommandContainer commandContainer;
 
     @Autowired
-    public JavarushTelegramBot(TelegramUserService telegramUserService, JavaRushGroupClient javaRushGroupClient, GroupSubService groupSubService) {
-        this.commandContainer = new CommandContainer(new SendBotMessageServiceImpl(this), javaRushGroupClient, groupSubService, telegramUserService);
+    public JavarushTelegramBot(TelegramUserService telegramUserService,
+                               JavaRushGroupClient javaRushGroupClient,
+                               GroupSubService groupSubService,
+                               StatisticsService statisticsService,
+                               @Value("#{'${bot.admins}'.split(',')}") List<String> admins) {
+        this.commandContainer = new CommandContainer(new SendBotMessageServiceImpl(this), javaRushGroupClient, groupSubService, telegramUserService, statisticsService, admins);
     }
 
     @Override
@@ -37,10 +44,9 @@ public class JavarushTelegramBot extends TelegramLongPollingBot {
             String message = update.getMessage().getText().trim();
             if (message.startsWith(COMMAND_PREFIX)) {
                 String commandIdentifier = message.split(" ")[0].toLowerCase();
-
-                commandContainer.retrieveCommand(commandIdentifier).execute(update);
+                commandContainer.retrieveCommand(commandIdentifier, update.getMessage().getFrom().getUserName()).execute(update);
             } else {
-                commandContainer.retrieveCommand(NO.getCommandName()).execute(update);
+                commandContainer.retrieveCommand(NO.getCommandName(), update.getMessage().getFrom().getUserName()).execute(update);
             }
         }
     }
